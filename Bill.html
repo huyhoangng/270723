@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
+</head>
+<body>
+    <div ng-app="costApp" ng-controller="CostController">
+        <b>Bill</b>
+        <div>Quatity: <input type="number" min="0" ng-model="qty" required></div>
+        <div>Cost: <input type="number" min="0" ng-model="cost" required></div>
+        <b>Total</b>
+        <span>
+            {{total | currency: 'Rs'}}
+        </span>
+        <button class="btn" ng-click="pay()">Pay</button>
+        <script>
+            var app= angular.module('costApp',[]);
+            app.controller('CostController',function($scope){
+                $scope.qty = 0;
+                $scope.cost = 0;
+                $scope.total = 0;
+                $scope.pay = function(){
+                    this.total = this.qty * this.cost
+                };
+            });
+        </script>
+    </div>
+</body>
+</html>
